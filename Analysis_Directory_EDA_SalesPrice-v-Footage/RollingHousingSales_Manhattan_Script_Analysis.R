@@ -28,15 +28,3 @@ detach(mh)
 mh.sale <- mh[mh$sale.price.n!=0,]
 plot(mh.sale$gross.sqft,mh.sale$sale.price.n)
 plot(log10(mh.sale$gross.sqft),log10(mh.sale$sale.price.n))
-
-## for now, let's look at 1-, 2-, and 3-family homes
-mh.homes <- mh.sale[which(grepl("FAMILY",mh.sale$building.class.category)),]
-dim(mh.homes)
-plot(log10(mh.homes$gross.sqft),log10(mh.homes$sale.price.n))
-summary(mh.homes[which(mh.homes$sale.price.n<100000),])
-""
-
-## remove outliers that seem like they weren't actual sales
-mh.homes$outliers <- (log10(mh.homes$sale.price.n) <=5) + 0
-mh.homes <- mh.homes[which(mh.homes$outliers==0),]
-plot(log10(mh.homes$gross.sqft),log10(mh.homes$sale.price.n))
