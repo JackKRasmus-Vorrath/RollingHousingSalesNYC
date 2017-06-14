@@ -32,3 +32,8 @@ names(mh) <- tolower(names(mh)) # make all variable names lower case
 mh$gross.sqft <- as.numeric(gsub("[^[:digit:]]","", mh$gross.square.feet))
 mh$land.sqft <- as.numeric(gsub("[^[:digit:]]","", mh$land.square.feet))
 mh$year.built <- as.numeric(as.character(mh$year.built))
+
+## remove outliers that seem like they weren't actual sales
+mh.homes$outliers <- (log10(mh.homes$sale.price.n) <=5) + 0
+mh.homes <- mh.homes[which(mh.homes$outliers==0),]
+plot(log10(mh.homes$gross.sqft),log10(mh.homes$sale.price.n))
