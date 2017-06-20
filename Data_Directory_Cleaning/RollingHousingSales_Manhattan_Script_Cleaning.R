@@ -2,7 +2,7 @@
 # Code modeled on pages 49-50 of O'Neil and Schutt
 # Cf. http://www1.nyc.gov/site/finance/taxes/property-rolling-sales-data.page
 
-
+# You will need to set this to your own working directory
 setwd("C://Users//jkras//Desktop//R_Projects//RollingHousingSalesNYC")
 
 library(plyr)
